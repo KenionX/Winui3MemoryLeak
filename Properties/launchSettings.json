@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MemoryLeakTest (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MemoryLeakTest (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
