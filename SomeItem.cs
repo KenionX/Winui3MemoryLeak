@@ -1,13 +1,11 @@
-﻿namespace MemoryLeakTest;
+﻿using MvvmGen;
 
-public class SomeItem
+namespace MemoryLeakTest;
+
+[ViewModel]
+public partial class SomeItem
 {
-    public string Value { get; set; }
-    public int Value2 { get; set; }
-
-    public SomeItem(string value, int value2)
-    {
-        Value = value;
-        Value2 = value2;
-    }
+    [Property] private string _value;
+    [Property] private int _value2;
+    [Property] private bool _value3 = true;
 }

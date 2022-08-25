@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="#252525">
-        <Frame x:Name="SomeFrame" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Frame x:Name="SomeFrame" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>

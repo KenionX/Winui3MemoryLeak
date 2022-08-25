@@ -5,17 +5,41 @@
     xmlns:local="using:MemoryLeakTest"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="#404040" Width="250" Height="250">
-        <ListView ItemsSource="{x:Bind _someData, Mode=OneWay}" >
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:SomeItem">
-                    <Grid DoubleTapped="ThisEventCauseMemoryLeak">
-                        <TextBlock Text="{x:Bind Value}"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <Grid Background="#404040" Width="400" Height="400">
+        <controls:DataGrid ItemsSource="{x:Bind _someData, Mode=OneWay}"
+                           SelectionChanged="ItemListDataGrid_OnSelectionChanged"
+                           IsTabStop="False" 
+                           HorizontalAlignment="Center" 
+                           AutoGenerateColumns="False" 
+                           >
+            <controls:DataGrid.Columns>
+                <controls:DataGridTemplateColumn Header="Test" Width="75" Tag="checked">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="local:SomeItem">
+                            <Grid Width="20" IsTabStop="False">
+                                <CheckBox VerticalAlignment="Center" IsTabStop="False" HorizontalAlignment="Left" IsChecked="{x:Bind Value3, Mode=TwoWay}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="Test" Width="*" Tag="name">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="local:SomeItem">
+                            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{x:Bind Value2}"/>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="Test" Tag="value">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="local:SomeItem">
+                            <TextBlock VerticalAlignment="Center" Margin="10,0,10,0" Text="{x:Bind Value2}"/>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
     </Grid>
 </UserControl>

@@ -16,11 +16,9 @@ public sealed partial class MainWindow
             while (true)
             {
                 DispatcherQueue.TryEnqueue(SpawnInstance);
+                GC.Collect();
 
-                if(_currentInstance % 10 == 0)
-                    GC.Collect();
-
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
         }).Start();
     }
@@ -29,6 +27,6 @@ public sealed partial class MainWindow
     {
         SomeFrame.Content = new UserControl1();
         _currentInstance++;
-        Debug.WriteLine($"Current Instances: {_currentInstance}");
+        Debug.WriteLine($"Current Instances: {_currentInstance} DeAllocation: {UserControl1.DeconstructCounter}");
     }
 }
